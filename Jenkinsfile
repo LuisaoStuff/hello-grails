@@ -11,23 +11,22 @@ pipeline {
         stage('Test') {
             steps {
                 withGradle {
-                    sh './gradlew test'
-                    sh './gradlew -Dgob.evn=FirefoxHeadless iT'
+//                    sh './gradlew test'
+                    sh './gradlew -Dgob.evn=firefoxHeadless iT'
                     sh './gradlew codenarcTest'
                 }
             }
             post {
                 always {
                     junit 'build/test-results/**/TEST-*.xml'
-//                    script {
-//                        allure([
-//                            includeProperties: false,
-//                            jdk: '',
-//                            properties: [],
-//                            reportBuildPolicy: 'ALWAYS',
-//                            results: [[path: 'build/allure-results']]
-//                        ])
-//                    }
+                    publishHTML (target : [allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'build/reports/codenarc',
+                        reportFiles: '*.html',
+                        reportName: 'Reportes',
+                        ])
+                        
                }
             }
         }
