@@ -5,9 +5,8 @@ pipeline {
         ansiColor('xterm')
     }
 
-    configFileProvider(
-        [configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')]) {
-    }
+    configFileProvider([configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')]) {
+
     stages {
         stage('Test') {
             steps {
@@ -33,4 +32,7 @@ pipeline {
             }
         }
     }
+
+    }
+
 }
