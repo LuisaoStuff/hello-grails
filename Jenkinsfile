@@ -32,12 +32,11 @@ pipeline {
         }
         stage('Analysis') {
 
-            steps {
-                withGradle {
-			sh './gradlew checkstyleMain'                    
-                }
-                recordIssues enabledForFailure: true, tool: checkStyle()              
+            withGradle {
+                sh './gradlew checkstyleMain'                    
             }
+
+            recordIssues enabledForFailure: true, tool: checkStyle()              
 
             def checkstyle = scanForIssues tool: checkStyle(pattern: '**/target/checkstyle-result.xml'
             publishIssues issues: [checkstyle]                    
