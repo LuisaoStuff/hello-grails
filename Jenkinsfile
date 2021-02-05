@@ -17,8 +17,8 @@ pipeline {
                     }
                 }
             }
-            post {
-                always {
+//            post {
+//                always {
 
 //                    junit 'build/test-results/**/TEST-*.xml'
 /*                    publishHTML (target : [allowMissing: false,
@@ -29,8 +29,8 @@ pipeline {
                         reportName: 'Reportes',
                         ])
 */                        
-                }
-            }
+//                }
+//            }
         }
 
         stage('Analysis') {
@@ -40,8 +40,10 @@ pipeline {
             }
 
             def checkstyle = scanForIssues tool: checkStyle(pattern: 'build/checkstyle-result.xml')
-            publishIssues issues: [checkstyle]                    
-//            recordIssues enabledForFailure: true, tool: checkStyle()              
+            steps {
+                publishIssues issues: [checkstyle]                    
+                recordIssues enabledForFailure: true, tool: checkStyle()
+            }
 
         }
 
