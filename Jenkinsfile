@@ -39,7 +39,7 @@ pipeline {
                 sh './gradlew checkstyleMain'                    
             }
 
-            def checkstyle = scanForIssues tool: checkStyle(pattern: 'build/checkstyle-result.xml'
+            checkstyle = scanForIssues tool: checkStyle(pattern: 'build/checkstyle-result.xml'
             publishIssues issues: [checkstyle]                    
 //            recordIssues enabledForFailure: true, tool: checkStyle()              
 
