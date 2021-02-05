@@ -20,6 +20,17 @@ checkstyle {
 }
 
 
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled true
+        html.enabled false
+        html.stylesheet resources.text.fromFile('config/checkstyle/sun_checks.xml')
+    }
+}
+
+
+
 version "0.1"
 group "com"
 
