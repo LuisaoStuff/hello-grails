@@ -13,10 +13,11 @@ pipeline {
 //                        sh './gradlew -Dgob.evn=firefoxHeadless iT'
 //                        sh './gradlew iT'
 //                        sh './gradlew codenarcTest'
-//                        sh './gradlew checkstyleMain'                    
+                        sh './gradlew checkstyleMain'                    
                     }
                 }
             }
+            def checkstyle = scanForIssues tool: checkStyle(pattern: 'build/checkstyle-result.xml')
 //            post {
 //                always {
 
@@ -32,7 +33,7 @@ pipeline {
 //                }
 //            }
         }
-
+/*
         stage('Analysis') {
 
             withGradle {
@@ -48,4 +49,5 @@ pipeline {
         }
 
     }
+*/
 }
