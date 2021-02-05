@@ -18,9 +18,10 @@ pipeline {
                 }
             }
             def checkstyle = scanForIssues tool: checkStyle(pattern: 'build/checkstyle-result.xml')
-//            post {
-//                always {
-
+            post {
+                always {
+                    publishIssues issues: [checkstyle]                    
+                    recordIssues enabledForFailure: true, tool: checkStyle()
 //                    junit 'build/test-results/**/TEST-*.xml'
 /*                    publishHTML (target : [allowMissing: false,
                         alwaysLinkToLastBuild: true,
@@ -30,8 +31,8 @@ pipeline {
                         reportName: 'Reportes',
                         ])
 */                        
-//                }
-//            }
+                }
+            }
         }
 /*
         stage('Analysis') {
