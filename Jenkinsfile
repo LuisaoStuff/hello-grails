@@ -17,7 +17,6 @@ pipeline {
                     }
                 }
             }
-            def checkstyle = scanForIssues tool: checkStyle(pattern: 'build/checkstyle-result.xml')
             post {
                 always {
                     publishIssues issues: [checkstyle]                    
@@ -34,21 +33,5 @@ pipeline {
                 }
             }
         }
-/*
-        stage('Analysis') {
-
-            withGradle {
-                sh './gradlew checkstyleMain'                    
-            }
-
-            def checkstyle = scanForIssues tool: checkStyle(pattern: 'build/checkstyle-result.xml')
-            steps {
-                publishIssues issues: [checkstyle]                    
-                recordIssues enabledForFailure: true, tool: checkStyle()
-            }
-
-        }
-*/
     }
-
 }
