@@ -5,14 +5,11 @@ pipeline {
         ansiColor('xterm')
     }
 
-
-
     stages {
         stage('Test') {
             steps {
                 configFileProvider([configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')]) {
                     withGradle {
-//                        sh './gradlew test'
 //                        sh './gradlew -Dgob.evn=firefoxHeadless iT'
                         sh './gradlew iT'
                         sh './gradlew codenarcTest'
@@ -34,7 +31,4 @@ pipeline {
             }
         }
     }
-
-
-
 }
