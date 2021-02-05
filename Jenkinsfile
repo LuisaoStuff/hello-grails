@@ -13,12 +13,18 @@ pipeline {
 //                        sh './gradlew -Dgob.evn=firefoxHeadless iT'
                         sh './gradlew iT'
                         sh './gradlew codenarcTest'
+			sh './gradlew checkstyleMain'
                     }
                 }
             }
             post {
                 always {
                     junit 'build/test-results/**/TEST-*.xml'
+
+                    recordIssues enabledForFailure: true, tool: checkStyle()
+                    def checkstyle = scanForIssues tool: checkStyle(pattern: '**/target/checkstyle-result.xml')
+                    publishIssues issues: [checkstyle]                    
+
                     publishHTML (target : [allowMissing: false,
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
