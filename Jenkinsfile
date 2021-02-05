@@ -10,7 +10,7 @@ pipeline {
             steps {
                 configFileProvider([configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')]) {
                     withGradle {
-//                        sh './gradlew -Dgob.evn=firefoxHeadless iT'
+                        sh './gradlew clean'
                         sh './gradlew iT'
 //                        sh './gradlew codenarcTest'
                         sh './gradlew checkstyle'
