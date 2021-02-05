@@ -13,13 +13,12 @@ pipeline {
 //                        sh './gradlew -Dgob.evn=firefoxHeadless iT'
 //                        sh './gradlew iT'
 //                        sh './gradlew codenarcTest'
-                        sh './gradlew checkstyleMain'                    
+//                        sh './gradlew checkstyleMain'                    
                     }
                 }
             }
             post {
                 always {
-                    recordIssues enabledForFailure: true, tool: checkStyle()              
 
 //                    junit 'build/test-results/**/TEST-*.xml'
 /*                    publishHTML (target : [allowMissing: false,
@@ -33,17 +32,18 @@ pipeline {
                 }
             }
         }
-/*
+
         stage('Analysis') {
 
             withGradle {
                 sh './gradlew checkstyleMain'                    
             }
-*/
-//            def checkstyle = scanForIssues tool: checkStyle(pattern: '**/target/checkstyle-result.xml'
-/*            publishIssues issues: [checkstyle]                    
+
+            def checkstyle = scanForIssues tool: checkStyle(pattern: 'build/checkstyle-result.xml'
+            publishIssues issues: [checkstyle]                    
+//            recordIssues enabledForFailure: true, tool: checkStyle()              
 
         }
-*/
+
     }
 }
