@@ -13,7 +13,7 @@ pipeline {
                         sh './gradlew clean'
                         sh './gradlew iT'
 //                        sh './gradlew codenarcTest'
-                        sh './gradlew checkstyle'
+                        sh './gradlew checkstyleTest'
                     }
                 }
             }
