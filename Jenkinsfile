@@ -18,8 +18,7 @@ pipeline {
                 }
             }
             post {
-                always {
-                    publishIssues issues: [checkstyle]                    
+                always {                    
                     recordIssues enabledForFailure: true, tool: checkStyle()
 //                    junit 'build/test-results/**/TEST-*.xml'
 /*                    publishHTML (target : [allowMissing: false,
