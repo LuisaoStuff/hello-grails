@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenCentral()
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies {
@@ -11,18 +12,20 @@ buildscript {
 }
 
 plugins {
+    id 'java'
     id 'checkstyle'
 }
-
 
 checkstyle {
     configFile = project(':').file("config/checkstyle/sun_checks.xml")
     configProperties = ["suppressionFile" : project(':').file("config/checkstyle/suppressions.xml")]
-    toolVersion = "6.0"
+    toolVersion = "8.36.1"
     ignoreFailures = true
 }
 
-
+checkstyleTest {
+    source ='src/test/java'
+}
 
 tasks.withType(Checkstyle) {
     reports {
@@ -30,7 +33,6 @@ tasks.withType(Checkstyle) {
         html.enabled false
     }
 }
-
 
 
 version "0.1"

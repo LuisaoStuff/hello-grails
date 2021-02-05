@@ -13,7 +13,7 @@ pipeline {
 //                        sh './gradlew -Dgob.evn=firefoxHeadless iT'
                         sh './gradlew iT'
 //                        sh './gradlew codenarcTest'
-                        sh './gradlew checkstyleMain'                    
+                        sh './gradlew checkstyle'
                     }
                 }
             }
