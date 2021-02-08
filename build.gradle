@@ -19,7 +19,6 @@ plugins {
 checkstyle {
     configFile = project(':').file("config/checkstyle/sun_checks.xml")
     configProperties = ["suppressionFile" : project(':').file("config/checkstyle/suppressions.xml")]
-    toolVersion = "8.36.1"
     ignoreFailures = true
 }
 
