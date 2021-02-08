@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                withGradlew {
+                withGradle {
                     sh './gradlew assemble'
                 }
                 post {
