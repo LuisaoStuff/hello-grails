@@ -10,10 +10,10 @@ pipeline {
             steps {
                 configFileProvider([configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')]) {
                     withGradle {
-                        sh './gradlew clean'
-                        sh './gradlew iT'
+                        sh './gradlew clean check'
+//                        sh './gradlew iT'
 //                        sh './gradlew codenarcTest'
-                        sh './gradlew checkstyleTest'
+//                        sh './gradlew checkstyleTest'
                     }
                 }
             }
@@ -24,14 +24,14 @@ pipeline {
                         enabledForFailure: true,
                         tool: checkStyle(pattern: 'build/reports/checkstyle/*.xml')
                     )
-/*                    publishHTML (target : [allowMissing: false,
+                    publishHTML (target : [allowMissing: false,
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
                         reportDir: 'build/reports/codenarc',
                         reportFiles: '*.html',
                         reportName: 'Reportes',
                         ])
-*/                        
+                        
                 }
             }
         }
