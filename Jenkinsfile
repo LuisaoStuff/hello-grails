@@ -41,18 +41,5 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
-            steps {
-                withGradle {
-                    sh './gradlew assemble'
-                }
-            }
-            post {
-                success {
-                    junit 'build/jacoco/*.xml'
-                    step( [ $class: 'JacocoPublisher' ] )
-                }
-            }
-        }
     }
 }
